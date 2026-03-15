@@ -11,7 +11,7 @@ This project analyzes movie revenue data, enriches it with movie details from th
 - [Ranking Dashboard Metrics](#ranking-dashboard-metrics)
 - [Usage](#usage)
 - [Caching Mechanism](#caching-mechanism)
-- 
+
 ## Setup and Installation
 
 1.  **Google Colab**: This notebook is designed to run in Google Colab.
@@ -20,14 +20,14 @@ This project analyzes movie revenue data, enriches it with movie details from th
     from google.colab import drive
     drive.mount('/content/drive')
     ```
-3.  **Install Libraries**: The project uses `pandas`, `numpy`, `requests`, `python-dotenv`, `matplotlib`, and `seaborn`. These can be installed using pip if not already available in your Colab environment:
+3.  **Install Libraries**: The project uses `pandas`, `numpy`, `requests`, `python-dotenv`, `matplotlib`, and `seaborn`. `pandas`, `numpy`, `requests`, `matplotlib`, and `seaborn` are typically pre-installed in Google Colab. `python-dotenv` is explicitly installed:
     ```bash
-    !pip install pandas numpy requests python-dotenv matplotlib seaborn
+    !pip install python-dotenv
     ```
 
 ## Data Files
 
-*   **`revenues_per_day.csv`**: This is the primary input data file, containing daily movie revenue records.
+*   [**`revenues_per_day.csv`**](https://drive.google.com/file/d/1rD3kqm6Kr8UWiTtq1-feyfFkZwhvWXzS/view?usp=sharing): This is the primary input data file, containing daily movie revenue records.
     *   **Location**: It is expected to be found at `/content/drive/MyDrive/revenues_per_day.csv`. Please adjust the path in the notebook if your file is located elsewhere.
 
 ## OMDb API Key
@@ -49,7 +49,7 @@ The notebook follows a structured approach:
 
 1.  **Data Loading**: Loads `revenues_per_day.csv` from Google Drive.
 2.  **API Integration**: Fetches additional movie details from the OMDb API.
-3.  **Caching**: Implements a caching mechanism to save fetched API data to a local JSON file (`/content/movies_omdb_full.json`) to prevent repeated API calls and manage daily limits.
+3.  **Caching**: Implements a caching mechanism to save fetched API data to a local JSON file (`/content/drive/MyDrive/movies_omdb.json`) to prevent repeated API calls and manage daily limits.
 4.  **Data Modeling**: Transforms the raw data into a star schema, comprising:
     *   **`fact_df`**: The fact table, containing daily revenue and theater counts, linked to dimension tables by foreign keys.
     *   **`movie_df`**: The movie dimension table, storing detailed movie information.
@@ -63,7 +63,7 @@ The notebook executes a consolidated data pipeline to ensure reproducibility and
 
 1.  Loads `revenues_per_day.csv` into `df`.
 2.  Initializes `movie_df` from `movie_records` (a variable populated from an initial API call, demonstrating the caching approach).
-3.  Saves `movie_df` to `/content/movies_omdb_full.json` for persistent caching.
+3.  Saves `movie_df` to `/content/drive/MyDrive/movies_omdb.json` for persistent caching.
 4.  Processes `df` to create `date_df` with unique dates and time attributes.
 5.  Assigns `movie_id` to `movie_df`.
 6.  Filters `df` to include only movies for which OMDb data was retrieved.
@@ -93,6 +93,4 @@ To run this notebook:
 
 ## Caching Mechanism
 
-The notebook incorporates a caching mechanism to avoid repeatedly hitting the OMDb API. After the initial API calls (or when the `movie_records` variable is available from a previous run), the fetched movie data is saved to `/content/movies_omdb_full.json`. In subsequent runs or if the API limit is reached, the notebook can load movie details directly from this JSON cache, ensuring continued functionality without re-fetching.
-  
-      
+The notebook incorporates a caching mechanism to avoid repeatedly hitting the OMDb API. After the initial API calls (or when the `movie_records` variable is available from a previous run), the fetched movie data is saved to `/content/drive/MyDrive/movies_omdb.json`. In subsequent runs or if the API limit is reached, the notebook can load movie details directly from this JSON cache, ensuring continued functionality without re-fetching.
