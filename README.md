@@ -11,8 +11,7 @@ This project analyzes movie revenue data, enriches it with movie details from th
 - [Ranking Dashboard Metrics](#ranking-dashboard-metrics)
 - [Usage](#usage)
 - [Caching Mechanism](#caching-mechanism)
-- [Cleanup Guidelines](#cleanup-guidelines)
-
+- 
 ## Setup and Installation
 
 1.  **Google Colab**: This notebook is designed to run in Google Colab.
