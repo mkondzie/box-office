@@ -55,7 +55,7 @@ The notebook follows a structured approach:
     *   **`fact_df`**: The fact table, containing daily revenue and theater counts, linked to dimension tables by foreign keys.
     *   **`movie_df`**: The movie dimension table, storing detailed movie information.
     *   **`date_df`**: The date dimension table, containing date-related attributes.
-5.  **Data Cleaning**: Handles missing values and corrects data types (e.g., converting 'theaters' to integer, 'imdb_rating' and 'imdb_votes' to numeric).
+5.  **Data Cleaning**: Handles missing values and corrects data types.
 6.  **Ranking Dashboard**: Aggregates data and visualizes top-ranked movies based on various performance indicators.
 
 ## Data Pipeline Overview
@@ -69,9 +69,9 @@ The notebook executes a consolidated data pipeline to ensure reproducibility and
 5.  Assigns `movie_id` to `movie_df`.
 6.  Filters `df` to include only movies for which OMDb data was retrieved.
 7.  Merges `df`, `movie_df`, and `date_df` to form `fact_df`.
-8.  Cleans and converts data types in `fact_df` (e.g., filling NaNs in 'theaters' and converting to int).
+8.  Cleans and converts data types in `fact_df`.
 9.  Converts `imdb_rating` and `imdb_votes` in `movie_df` to numeric types.
-10. Calculates aggregated metrics (`total_revenue`, `average_theaters`, `max_theaters`, `imdb_rating`, `imdb_votes`) for the ranking dashboard.
+10. Calculates aggregated metrics (`total_revenue`, `theaters`, `imdb_rating`, `imdb_votes`) for the ranking dashboard.
 
 ## Ranking Dashboard Metrics
 
